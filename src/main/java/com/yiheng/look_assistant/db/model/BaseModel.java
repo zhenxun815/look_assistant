@@ -1,6 +1,7 @@
 package com.yiheng.look_assistant.db.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -23,7 +24,7 @@ import java.util.Date;
 @Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createTime", "updateTime"}, allowGetters = true)
+@JsonIgnoreProperties(value = {"createTime", "updateTime"}, allowGetters = true, ignoreUnknown = true)
 public class BaseModel {
 
     @Id
@@ -33,15 +34,19 @@ public class BaseModel {
     @JsonInclude
     protected String id;
 
-    @Column(updatable = false)
+    @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
-    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date createTime;
 
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
-    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date updateTime;
+
+    @Column
+    @JsonIgnore
+    protected Integer delFlag;
 }
