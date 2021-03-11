@@ -2,6 +2,7 @@ package com.yiheng.look_assistant.db.repository;
 
 import com.yiheng.look_assistant.db.model.BaseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * @author Yiheng
@@ -9,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * 逻辑删除，重写删除方法。
  */
-
+@NoRepositoryBean
 public interface BaseRepository extends JpaRepository<BaseModel, Long> {
 
 
