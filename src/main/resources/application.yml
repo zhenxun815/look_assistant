@@ -1,0 +1,13 @@
+spring:
+  port: 9527
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/look_data?characterEncoding=UTF8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: yiheng
+    password: Code@look1024
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
